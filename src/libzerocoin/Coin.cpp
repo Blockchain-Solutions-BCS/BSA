@@ -11,6 +11,7 @@
  **/
 
 // Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2020 The BSA developers
 #include <stdexcept>
 #include <iostream>
 #include "Coin.h"

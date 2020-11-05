@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2020 The BSA developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -80,29 +81,29 @@ enum AvailableCoinsType {
     ALL_COINS = 1,
     ONLY_DENOMINATED = 2,
     ONLY_NOT10000IFMN = 3,
-    ONLY_NONDENOMINATED_NOT10000IFMN = 4, // ONLY_NONDENOMINATED and not 10000 PIV at the same time
+    ONLY_NONDENOMINATED_NOT10000IFMN = 4, // ONLY_NONDENOMINATED and not 10000 BSA at the same time
     ONLY_10000 = 5,                        // find masternode outputs including locked ones (use with caution)
     STAKABLE_COINS = 6                          // UTXO's that are valid for staking
 };
 
-// Possible states for zPIV send
+// Possible states for zBSA send
 enum ZerocoinSpendStatus {
-    ZPIV_SPEND_OKAY = 0,                            // No error
-    ZPIV_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
-    ZPIV_WALLET_LOCKED = 2,                         // Wallet was locked
-    ZPIV_COMMIT_FAILED = 3,                         // Commit failed, reset status
-    ZPIV_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
-    ZPIV_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
-    ZPIV_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
-    ZPIV_TRX_CREATE = 7,                            // Everything related to create the transaction
-    ZPIV_TRX_CHANGE = 8,                            // Everything related to transaction change
-    ZPIV_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
-    ZPIV_INVALID_COIN = 10,                         // Selected mint coin is not valid
-    ZPIV_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
-    ZPIV_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
-    ZPIV_BAD_SERIALIZATION = 13,                    // Transaction verification failed
-    ZPIV_SPENT_USED_ZPIV = 14,                      // Coin has already been spend
-    ZPIV_TX_TOO_LARGE = 15                          // The transaction is larger than the max tx size
+    ZBSA_SPEND_OKAY = 0,                            // No error
+    ZBSA_SPEND_ERROR = 1,                           // Unspecified class of errors, more details are (hopefully) in the returning text
+    ZBSA_WALLET_LOCKED = 2,                         // Wallet was locked
+    ZBSA_COMMIT_FAILED = 3,                         // Commit failed, reset status
+    ZBSA_ERASE_SPENDS_FAILED = 4,                   // Erasing spends during reset failed
+    ZBSA_ERASE_NEW_MINTS_FAILED = 5,                // Erasing new mints during reset failed
+    ZBSA_TRX_FUNDS_PROBLEMS = 6,                    // Everything related to available funds
+    ZBSA_TRX_CREATE = 7,                            // Everything related to create the transaction
+    ZBSA_TRX_CHANGE = 8,                            // Everything related to transaction change
+    ZBSA_TXMINT_GENERAL = 9,                        // General errors in MintToTxIn
+    ZBSA_INVALID_COIN = 10,                         // Selected mint coin is not valid
+    ZBSA_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
+    ZBSA_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
+    ZBSA_BAD_SERIALIZATION = 13,                    // Transaction verification failed
+    ZBSA_SPENT_USED_ZBSA = 14,                      // Coin has already been spend
+    ZBSA_TX_TOO_LARGE = 15                          // The transaction is larger than the max tx size
 };
 
 struct CompactTallyItem {
@@ -207,7 +208,7 @@ public:
     std::string ResetMintZerocoin(bool fExtendedSearch);
     std::string ResetSpentZerocoin();
     void ReconsiderZerocoins(std::list<CZerocoinMint>& listMintsRestored);
-    void ZPivBackupWallet();
+    void ZBSABackupWallet();
 
     /** Zerocin entry changed.
     * @note called with lock cs_wallet held.
@@ -310,7 +311,7 @@ public:
         return fEnableZeromint;
     }
 
-    void setZPivAutoBackups(bool fEnabled)
+    void setZBSAAutoBackups(bool fEnabled)
     {
         fBackupMints = fEnabled;
     }

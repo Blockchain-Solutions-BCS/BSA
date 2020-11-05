@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2020 The BSA developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -237,10 +238,10 @@ Value stop(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop PIVX server.");
+            "\nStop BSA server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "PIVX server stopping";
+    return "BSA server stopping";
 }
 
 
@@ -318,36 +319,36 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* Pivx features */
-        {"pivx", "masternode", &masternode, true, true, false},
-        {"pivx", "listmasternodes", &listmasternodes, true, true, false},
-        {"pivx", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"pivx", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"pivx", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"pivx", "masternodedebug", &masternodedebug, true, true, false},
-        {"pivx", "startmasternode", &startmasternode, true, true, false},
-        {"pivx", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"pivx", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"pivx", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"pivx", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"pivx", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"pivx", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"pivx", "mnbudget", &mnbudget, true, true, false},
-        {"pivx", "preparebudget", &preparebudget, true, true, false},
-        {"pivx", "submitbudget", &submitbudget, true, true, false},
-        {"pivx", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"pivx", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"pivx", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"pivx", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"pivx", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"pivx", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"pivx", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"pivx", "checkbudgets", &checkbudgets, true, true, false},
-        {"pivx", "mnsync", &mnsync, true, true, false},
-        {"pivx", "spork", &spork, true, true, false},
-        {"pivx", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* BSA features */
+        {"bsa", "masternode", &masternode, true, true, false},
+        {"bsa", "listmasternodes", &listmasternodes, true, true, false},
+        {"bsa", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"bsa", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"bsa", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"bsa", "masternodedebug", &masternodedebug, true, true, false},
+        {"bsa", "startmasternode", &startmasternode, true, true, false},
+        {"bsa", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"bsa", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"bsa", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"bsa", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"bsa", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"bsa", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"bsa", "mnbudget", &mnbudget, true, true, false},
+        {"bsa", "preparebudget", &preparebudget, true, true, false},
+        {"bsa", "submitbudget", &submitbudget, true, true, false},
+        {"bsa", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"bsa", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"bsa", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"bsa", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"bsa", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"bsa", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"bsa", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"bsa", "checkbudgets", &checkbudgets, true, true, false},
+        {"bsa", "mnsync", &mnsync, true, true, false},
+        {"bsa", "spork", &spork, true, true, false},
+        {"bsa", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"pivx", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
+        {"bsa", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -627,16 +628,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use pivxd, or the -server option to pivx-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use bsad, or the -server option to bsa-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=pivxrpc\n"
+                                               "rpcuser=bsarpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"PIVX Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"BSA Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1087,7 +1088,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> pivx-cli " + methodname + " " + args + "\n";
+    return "> bsa-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

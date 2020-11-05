@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=BSA
+Comment=BSA P2P Cryptocurrency
+Comment[fr]=BSA, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=BSA, eşten eşe kriptografik sanal para birimi
+Exec=bsa-qt %u
+Terminal=false
+Type=Application
+Icon=bsa128
+MimeType=x-scheme-handler/bsa;
+Categories=Office;Finance;
